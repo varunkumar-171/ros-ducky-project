@@ -28,3 +28,6 @@ ipython==7.34.0
 
 #torch
 torch
+
+#yolov5
+yolov5

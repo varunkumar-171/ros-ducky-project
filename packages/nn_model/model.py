@@ -6,6 +6,7 @@ import numpy as np
 import torch
 
 from dt_device_utils import DeviceHardwareBrand, get_device_hardware_brand
+from solution.integration_activity import MODEL_NAME, DT_TOKEN
 
 from .constants import IMAGE_SIZE, ASSETS_DIR
 
