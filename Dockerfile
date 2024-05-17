@@ -1,7 +1,7 @@
 # parameters
-ARG REPO_NAME="ros-ducky-project-duckiebot"
-ARG DESCRIPTION="Project for deploying nodes on duckiebot"
-ARG MAINTAINER="Varun Kumar (varunkumar.siva@gmail.com)"
+ARG REPO_NAME="<ros-ducky-project-duckiebot>"
+ARG DESCRIPTION="<ros>"
+ARG MAINTAINER="<Varun Kumar> (<varunkumar.siva@gmail.com>)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
