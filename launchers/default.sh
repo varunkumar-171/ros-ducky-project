@@ -13,6 +13,10 @@ dt-launchfile-init
 
 export ROSCONSOLE_STDOUT_LINE_BUFFERED=1
 
+echo $ROS_MASTER_URI
+echo $ROS_HOSTNAME
+export ROS_HOSTNAME=localhost
+
 source /code/catkin_ws/devel/setup.bash --extend
 source /code/submission_ws/devel/setup.bash --extend
 source /code/solution/devel/setup.bash --extend

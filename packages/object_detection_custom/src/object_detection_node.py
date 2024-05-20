@@ -8,6 +8,7 @@ from duckietown.dtros import DTROS, NodeType, TopicType
 from duckietown_msgs.msg import Twist2DStamped, EpisodeStart
 from cv_bridge import CvBridge
 from sensor_msgs.msg import CompressedImage
+from std_msgs.msg import String
 
 from nn_model.constants import IMAGE_SIZE
 from nn_model.model import Wrapper
@@ -29,6 +30,7 @@ class ObjectDetectionNode(DTROS):
 
         self.veh = rospy.get_namespace().strip("/")
         self.avoid_duckies = False
+        self._publisher = rospy.Publisher("alive", String, queue_size=10)
 
         # Construct publishers
         car_cmd_topic = f"/{self.veh}/joy_mapper_node/car_cmd"
@@ -76,6 +78,15 @@ class ObjectDetectionNode(DTROS):
         self.first_image_received = False
         self.initialized = True
         self.log("Initialized!")
+
+    def run(self):
+        # publish message every 1 second (1 Hz)
+        rate = rospy.Rate(1)
+        message = "I am alive!"
+        while not rospy.is_shutdown():
+            rospy.loginfo("Publishing message: '%s'" % message)
+            self._publisher.publish(message)
+            rate.sleep()
 
     def cb_episode_start(self, msg: EpisodeStart):
         self.avoid_duckies = False
@@ -167,5 +178,6 @@ class ObjectDetectionNode(DTROS):
 if __name__ == "__main__":
     # Initialize the node
     object_detection_node = ObjectDetectionNode(node_name="object_detection_node")
+    object_detection_node.run()
     # Keep it spinning
     rospy.spin()
